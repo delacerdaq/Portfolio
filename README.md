@@ -14,7 +14,7 @@
 <p> - GIT e GITHUB</p>
 
 ## 🎨 Layout
-Você pode visualizar o layout do projeto através <a href="">desse link</a> <br>
+Você pode visualizar o layout do projeto através <a href="https://delacerdaq.github.io/Portfolio/">desse link</a> <br>
 É necessário ter conta no <a href="figma.com">Figma</a> para acessá-lo.
 
 ##
