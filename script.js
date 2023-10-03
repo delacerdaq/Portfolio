@@ -1,3 +1,13 @@
+var inputElement = document.getElementById("input-name"); 
+
+inputElement.addEventListener("input", function() {
+  var words = this.value.split(" ");
+  for (var i = 0; i < words.length; i++) {
+    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
+  }
+  this.value = words.join(" ");
+});
+
 function ToggleMode()
 {
     const selectModoEscuro = document.getElementById('screen_mode');
