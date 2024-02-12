@@ -1,3 +1,30 @@
+<?php
+
+  if(isset($_POST['submit'])){
+    // print_r($_POST['name']);
+    // print_r('<br>');
+    // print_r($_POST['phone']);
+    // print_r('<br>');
+    // print_r($_POST['email']);
+    // print_r('<br>');
+    // print_r($_POST['subject']);
+    // print_r('<br>');
+    // // print_r($_POST['message']);
+
+    include_once('config.php');
+
+    $name = ($_POST['name']);
+    $phone = ($_POST['phone']);
+    $email = ($_POST['email']);
+    $subject = ($_POST['subject']);
+    $message = ($_POST['message']);
+
+    $result = mysqli_query($conexao, "INSERT INTO requests(user_name, phone, email, subj, msg) 
+    VALUES ('$name', '$phone', '$email', '$subject', '$message')");
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="light">
 <head>
@@ -337,35 +364,35 @@
   <div class="contact-box">
     <div class="contact-left">
     <h3 id="contact-box_h3">SEND YOUR REQUEST</h3>
-      <form>
+      <form action="index.php" method="POST">
       <div class="input-row">
         <div class="input-group">
           <label id="contact-box_name">Name</label>
-          <input id="input-name" type="text" placeholder="Maria Smith">
+          <input id="input-name" name="name" type="text" placeholder="Maria Smith">
         </div>
 
         <div class="input-group">
           <label id="contact-box_phone">Phone</label>
-          <input oninput="MascaraTelefone()" id="plc_hlr_1" type="text" placeholder="">
+          <input oninput="MascaraTelefone()" name="phone" id="plc_hlr_1" type="text" placeholder="">
         </div>
       </div>
 
                   <div class="input-row">
                       <div class="input-group">
                           <label>Email</label>
-                          <input type="email" placeholder="maria@gmail.com">
+                          <input type="email" name="email" placeholder="maria@gmail.com">
                       </div>
 
                       <div class="input-group">
                           <label id="contact-box_subj">Subject</label>
-                          <input id="plc_hlr_2" type="text" placeholder="Product Demo">
+                          <input id="plc_hlr_2" type="text" name="subject" placeholder="Product Demo">
                       </div>
                   </div>
 
                   <label id="contact-box_ms">Message</label>
-                  <textarea id="plc_hlr_3" rows="5" placeholder="Your Message"></textarea>
+                  <textarea id="plc_hlr_3" rows="5" name="message" placeholder="Your Message"></textarea>
               
-                  <button id="contact-box_btn" type="submit">SEND</button>
+                  <button id="contact-box_btn" type="submit" name="submit">SEND</button>
               </form>
           </div>
           
