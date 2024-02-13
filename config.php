@@ -3,7 +3,7 @@
     $dbHost = 'Localhost';
     $dbUsername = 'root';
     $dbPassword = '';
-    $dbName = 'portfolio_form';
+    $dbName = 'personal_portfolio_form';
 
     $conexao = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
 
