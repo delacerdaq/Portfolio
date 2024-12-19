@@ -1,28 +1,15 @@
 <?php
+require_once '../config/Database.php';
+require_once '../model/Request.php';
+require_once '../controller/RequestController.php';
 
-  if(isset($_POST['submit'])){
-    // print_r($_POST['name']);
-    // print_r('<br>');
-    // print_r($_POST['phone']);
-    // print_r('<br>');
-    // print_r($_POST['email']);
-    // print_r('<br>');
-    // print_r($_POST['subject']);
-    // print_r('<br>');
-    // // print_r($_POST['message']);
+// Cria o controlador
+$controller = new RequestController();
 
-    include_once('config.php');
+$statusMessages = $controller->saveRequest();
 
-    $name = ($_POST['name']);
-    $phone = ($_POST['phone']);
-    $email = ($_POST['email']);
-    $subject = ($_POST['subject']);
-    $message = ($_POST['message']);
-
-    $result = mysqli_query($conexao, "INSERT INTO requests(user_name, phone, email, subj, msg) 
-    VALUES ('$name', '$phone', '$email', '$subject', '$message')");
-  }
-
+$successMessage = $statusMessages['success'];
+$errorMessage = $statusMessages['error'];
 ?>
 
 <!DOCTYPE html>
@@ -31,9 +18,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="./icon/logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../icon/logo.ico" type="image/x-icon">
     <title>Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -93,7 +80,7 @@
 
     <div id="container_back_1">
       <div id="background">
-        <img src="./img/img_background.png" alt="" width="100%">
+        <img src="../img/img_background.png" alt="" width="100%">
       </div>
       
       <div id="title">
@@ -139,7 +126,7 @@
 
       <div id="container_back_2">
         <div id="inspo_background">
-          <img src="./img/inspo_section.png" alt="" width="100%">
+          <img src="../img/inspo_section.png" alt="" width="100%">
         </div>
 
         <div id="inspo_section">
@@ -170,7 +157,7 @@
         </div>
         
         <div id="about_img">
-          <img src="./img/profile.png" alt="">
+          <img src="../img/profile.png" alt="">
         </div>
       </div>
 
@@ -347,9 +334,9 @@
     </div>
 
     <section id="container-projects">
-      <div id="pj_01"><a href="https://artmixx.netlify.app/" target="_blank"><img src="./img/project_artmixx.png" alt=""></a></div>
-      <div id="pj_02"><a href="#"><img id="pj_02_img" src="./img/pj_soon.png" alt=""></a></div>
-      <div id="pj_03"><a href="#"><img id="pj_03_img" src="./img/pj_soon.png" alt=""></a></div>
+      <div id="pj_01"><a href="https://artmixx.netlify.app/" target="_blank"><img src="../img/project_artmixx.png" alt=""></a></div>
+      <div id="pj_02"><a href="https://github.com/delacerdaq/Projeto_Diario_de_Classes"><img src="../img/diary_class_project.png" alt=""></a></div>
+      <div id="pj_03"><a href="#"><img id="pj_03_img" src="../img/pj_soon.png" alt=""></a></div>
     </section>
     
     <div id="btn_seemore">
@@ -359,6 +346,20 @@
     <div id="contact_title">
       <h2 id="contact_title_h2">CONTACT</h2>
     </div>
+
+    <!-- Exibe a mensagem de sucesso -->
+<?php if ($successMessage): ?>
+    <div id="status_message_success">
+        <?php echo $successMessage; ?>
+    </div>
+<?php endif; ?>
+
+<!-- Exibe a mensagem de erro -->
+<?php if ($errorMessage): ?>
+    <div id="status_message_error">
+        <?php echo $errorMessage; ?>
+    </div>
+<?php endif; ?>
 
 <div class="conteiner">
   <div class="contact-box">
@@ -424,6 +425,6 @@
 
   <footer id="ft_msg"><p>© 2023 | Ana Luiza de Lacerda | All rights reserved</p></footer>
 
-      <script src="script.js"></script>
+      <script src="../js/script.js"></script>
 </body>
 </html>
